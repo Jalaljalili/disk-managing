@@ -115,3 +115,42 @@ These commands are specifically for managing the root partition.
     ```bash
     lvextend -r -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
     ```
+## Disk Scanning
+Use the following commands to scan for newly attached disks or devices:
+1. **DScan SCSI hosts:**
+    ```bash
+    for host in $(ls /sys/class/scsi_host); do
+        echo ${host}
+        echo "- - -" > /sys/class/scsi_host/${host}/scan
+    done
+    ```
+2. **Rescan SCSI devices:**
+    ```bash
+    for host in $(ls /sys/class/scsi_device); do
+        echo ${host}
+        echo "1" > /sys/class/scsi_device/${host}/device/rescan
+    done
+    ```
+
+## Managing /sdb Partition
+Use these commands to manage the /sdb partition:
+1. **Display partition information:**
+    ```bash
+    parted -l
+    ```
+2. **Display physical volume details:**
+    ```bash
+    pvs
+    ```
+3. **Resize the physical volume:**
+    ```bash
+    pvresize /dev/sdb
+    ```
+4. **Display updated physical volume details:**
+    ```bash
+    pvs
+    ```
+5. **Extend the logical volume and resize filesystem:**
+    ```bash
+    lvextend -r -l +100%FREE /dev/OS/home
+    ```
