@@ -63,3 +63,55 @@ Displays details about block devices.
     ```bash
     e2fsck /dev/mapper/ubuntu--vg-ubuntu--lv
     ```  
+11. **Resize the filesystem:**
+    ```bash
+    resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+    ``` 
+12. **Remount or reboot to apply changes:**
+    ```bash
+    mount -o remount /dev/mapper/ubuntu--vg-ubuntu--lv
+    OR
+    reboot
+    ```  
+13. **Check disk space:**
+    ```bash
+    df -mh
+    ```
+## Root Partition Management
+These commands are specifically for managing the root partition.
+1. **Display logical volume details:**
+    ```bash
+    lvdisplay
+    ```
+2. **List block devices:**
+    ```bash
+    lsblk
+    ```
+3. **Check disk space usage:**
+    ```bash
+    df -mh
+    ```
+4. **Display physical volumes:**
+    ```bash
+    pvs
+    ```
+5. **Install required tools:**
+    ```bash
+    apt install cloud-guest-utils
+    ```
+6. **DGrow the partition:**
+    ```bash
+    growpart /dev/sda 3
+    ```
+7. **Resize the physical volume:**
+    ```bash
+    pvresize /dev/sda3
+    ```
+8. **Display volume groups:**
+    ```bash
+    vgs
+    ```
+9. **Extend the logical volume and resize filesystem:**
+    ```bash
+    lvextend -r -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
+    ```
