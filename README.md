@@ -154,3 +154,7 @@ Use these commands to manage the /sdb partition:
     ```bash
     lvextend -r -l +100%FREE /dev/OS/home
     ```
+## Notes
+- Ensure you have proper permissions (root or sudo access) before running these commands.
+- Back up critical data before performing LVM operations or resizing partitions.
+- Verify the system and filesystem compatibility with LVM commands.
